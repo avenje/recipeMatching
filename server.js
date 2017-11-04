@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // app.set("view engine", "handlebars");
 
 // Import routes and give the server access to them.
-var routes = require("./controllers/project2Controller.js");
+var routes = require("./controllers/recipeController.js");
 
 app.use("/", routes);
 
