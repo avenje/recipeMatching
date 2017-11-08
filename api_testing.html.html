@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Recipes</title>
+</head>
+
+<body>
+  <!-- Select Box -->
+  <form id="ingredientsForm">
+    <!-- Label for Text Box -->
+    <label for="ingredientsInput">Add your ingredients</label>
+    <!-- Text Input Box -->
+    <input type="text" id="ingredientsInput"><br>
+    <!-- Submit Button -->
+    <input id="addIngredients" type="submit" value="add">
+  
+  </form>
+
+  <br>
+  
+  <div id="ingredientsList"></div>
+
+
+  <input id="submitIngredients" type="submit" value="">
+
+
+</body>
+
+</html>
+
+<script src="https://www.gstatic.com/firebasejs/4.6.1/firebase.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+
+var ingredients = [];
+
+//add ingredients to array and send array to a request variable which is used in the API request
+
+$("#addIngredients").on("click", function(event) { 
+
+      event.preventDefault();
+
+
+      var ingredientEntered = $("#ingredientsInput").val().trim();
+
+      ingredients.push(ingredientEntered);
+
+      console.log(ingredients)
+
+      $("#ingredientsList").html(ingredients);
+
+
+  });
+
+//submit array of ingredients into an API request
+
+$("#submitIngredients").on("click", function(event) {
+
+  event.preventDefault();
+
+  var APIKey = "244b591c7908a2a5acef656b6e4f17bf";
+
+  var queryURL = "http://food2fork.com/api/search?key=" + APIKey + "&q=" + ingredients.join(",");
+    
+    $.ajax({
+     
+      url:queryURL,
+      method: 'GET'
+    })
+
+    .done(function(response) {
+      
+      console.log(response)
+
+    
+    });
+  });
+
+    
+        
+
+</script>
