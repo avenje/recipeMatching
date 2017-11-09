@@ -13,8 +13,8 @@ var recipe = {
 			cb(res);
 		});
 	},
-     update: function (objColVals, condition, cb) {
-		orm.update('recipes', objColVals, condition, function (res) {
+     delete: function (objColVals, condition, cb) {
+		orm.delete('recipes', objColVals, condition, function (res) {
 			cb(res);
 		});
 	}
