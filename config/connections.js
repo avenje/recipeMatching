@@ -5,10 +5,9 @@ if(process.env.JAWSDB_URL){
 	//Heroku deployment
 	connection = mysql.createConnection(process.env.JAWSDB_URL);
 } else {
-	local host
+	//local host
 	connection = mysql.createConnection({
-	port: 3000,
-    host:"	yhrz9vns005e0734.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",  
+    host:"yhrz9vns005e0734.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",  
     user:"hlac0x4javf0fjle",  
     password:"y80a1f295zuj2p09",  
 	database: "kho6h3yx8cgzexgn"  
