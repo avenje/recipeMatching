@@ -1,22 +1,26 @@
-var express = require('express');
-var router = express.Router();
-var bodyParser = require('body-parser');
-var app = express();
-var methodOverride = require('method-override');
-var recipe = require('../models/recipe.js');
+const express = require('express');
+const router = express.Router();
+const recipe = require('../models/recipe.js');
+const passport = require('passport');
 
 router.get('/', function(req,res) {
-     res.redirect('/recipes');
+	console.log('user', req.user);
+	if (req.user) {
+		res.redirect('/recipes');
+	}
+    else {
+		res.render('index');
+	}
 });
 
 router.get('/recipes', function(req,res) {
 	recipe.all(function(data){
           console.log();
-		res.render('index', {recipes : data});
+		res.render('recipe', {recipes : data, user: req.user});
 	});
 });
 
-router.post('/recipes/create', function(req,res) {
+router.post('/recipes/create', function(req, res) {
 	recipe.create(['ingredient_name', 'myFridge'], [req.body.name, 0], function(data){
 		res.redirect('/recipes');
 	});
@@ -24,7 +28,7 @@ router.post('/recipes/create', function(req,res) {
 
 router.delete('/recipes/delete/:id', function(req,res) {
 	recipe.delete({id: req.params.id}, function(data){
-        res.redirect('/recipes');
+		res.redirect('/recipes');
 	});
 });
 

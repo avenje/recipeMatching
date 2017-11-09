@@ -1,4 +1,3 @@
-
 let mysql = require("mysql");
 
 var connection;
@@ -25,4 +24,5 @@ connection.connect(function (err) {
 });
 
 module.exports = connection;
+
 
