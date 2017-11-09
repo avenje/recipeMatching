@@ -8,15 +8,13 @@ var recipe = {
 		});
 	},
 
-     create: function (cols, vals, cb) {
+    create: function (cols, vals, cb) {
 		orm.create('recipes', cols, vals, function (res) {
 			cb(res);
 		});
 	},
-     delete: function (objColVals, condition, cb) {
-		orm.delete('recipes', objColVals, condition, function (res) {
-			cb(res);
-		});
+    delete: function (condition, cb) {
+		orm.delete('recipes', condition, cb);
 	}
 };
 

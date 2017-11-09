@@ -1,43 +1,13 @@
-    <div class="row">
-        <div class="col-xs-4 col-md-4"></div>
-        <div class="col-xs-4 col-md-4">
-            <h2 class="text-center">My Custom Recipe Generator</h2>
-            <form class="create-update-form" action="recipes/create" method="POST">
-
-                <div class="form-group">
-                    <label for="ca">Ingredients to add:</label>
-                    <input type="text" id="ca" name="name" placeholder="Seperate ingredients with a comma">
-                </div>
-
-                <button class="btn btn-secondary" type="submit">Add ingredients</button>
-            </form>
-        </div>
-        <div class="col-xs-4 col-md-4"></div>
+<div class="container">
+    <div class="jumbrotron">
+        <h1 class="text-center">Welcome</h1>
+        <h2 class="text-center">My Custom Recipe Generator</h2>
     </div>
 
-    <div class="row">
-        <div class="col-xs-1 col-md-1"></div>
-        <div class="col-xs-3 col-md-3">
-            <h2 class="text-center">Ingredients in My Fridge</h2>
-            <ul>
-                {{#each recipes}} 
-                {{#unless this.myFridge}}
-                <li>
-                    {{this.ingredient_name}}
-                    <form action="recipes/delete/{{this.id}}?_method=DELETE" method="POST">
-                        <button class="btn btn-primary" type="submit">Remove</button>
-                    </form>
-                </li>
-                {{/unless}}
-                {{/each}}
-            </ul>
-        </div>
-        
-        <br>
-
-        <div class="text-center col-xs-4 col-md-4">
-            <img class="img-responsive" id="burger-picture" src="/assets/images/Fridge.jpg">
-        </div>
-    </div>
-
+    <br><br><br><br><br><br><br><br><br>
     
+    <main>
+         <a class="google-btn" href="/auth/google">Google</a>
+    </main>
+
+</div>
