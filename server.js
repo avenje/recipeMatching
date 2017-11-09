@@ -8,6 +8,8 @@ var PORT = process.env.PORT || 3000;
 var exphbs = require("express-handlebars");
 
 app.use(bodyParser.urlencoded({extended: false}));
+app.use(methodOverride("_method"));
+var exphbs = require("express-handlebars");
 app.use(express.static("public"));
 
 app.use(methodOverride("_method"));

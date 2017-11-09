@@ -22,13 +22,9 @@ router.post('/recipes/create', function(req,res) {
 	});
 });
 
-router.put('/recipes/update/:id', function(req,res) {
-	var condition = 'id = ' + req.params.id;
-
-	console.log('condition', condition);
-
-	recipe.update({'myFridge' : 1}, condition, function(data){
-		res.redirect('/recipes');
+router.delete('/recipes/delete/:id', function(req,res) {
+	recipe.delete({id: req.params.id}, function(data){
+        res.redirect('/recipes');
 	});
 });
 
