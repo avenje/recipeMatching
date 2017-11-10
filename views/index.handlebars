@@ -1,13 +1,136 @@
-<div class="container">
-    <div class="jumbrotron">
-        <h1 class="text-center">Welcome</h1>
-        <h2 class="text-center">My Custom Recipe Generator</h2>
-    </div>
-
-    <br><br><br><br><br><br><br><br><br>
+{{!-- <div class="container"> --}}
+<div class = "master-container">
+    {{!-- <div class="jumbrotron"> --}}
+        <h1 class="text-center welcome">Welcome</h1>
+        <h2 class="text-center my">My Custom Recipe Generator</h2>
+   {{!--  </div> --}}
+{{!--     <br><br><br><br><br><br><br><br><br> --}}
     
     <main>
-         <a class="google-btn" href="/auth/google">Google</a>
+         
     </main>
 
-</div>
+{{!--  --}}
+
+
+
+
+	<div class = "recipe">
+			<button class="btn btn-secondary" id ="fridgeView" type="submit">View Fridge</button>
+
+			<button class="btn btn-secondary" id ="pantryView" type="submit">View Pantry</button>
+
+			<button class="btn btn-secondary" id ="spiceView" type="submit">View Spices</button>
+
+		<div id = 'list'>
+		</div>
+		<div id ='use'>
+			<ul>
+				{{#each stock}}
+				{{#if this.include}}
+					<li>
+						{{this.item_name}}
+	                    <form action="return/{{this.id}}?_method=PUT" method="POST">
+	                        <button class="btn btn-primary" type="submit">Finished using</button>
+	                    </form>						
+					</li>
+				{{/if}}
+				{{/each}}
+			</ul>
+			<button class="btn btn-primary" id ="findRecipe" type="submit">Find Recipes!</button>
+		</div>
+
+	</div>
+	<div class = "fridge">
+		<div id= 'meat'>
+			<img src = 'http://clipartix.com/wp-content/uploads/2016/08/Steak-black-and-white-clipart-clipart-kid.jpg' style = 'width: 100px; height: 100px'>
+		</div>
+		<div id = 'dairy'>
+			<img src = 'https://static.abcteach.com/free_preview/s/swisscheese_gs_p.png' style = 'width: 100px; height: 100px'>
+		</div>
+		<div id = 'vegetable'>
+			<img src = 'http://laoblogger.com/images/mix-vegetables-clipart-black-and-white-10.jpg' style = 'width: 100px; height: 100px'>
+		</div>
+		<div id = 'fruit'>
+			<img src = 'http://wikiclipart.com/wp-content/uploads/2017/05/Fruit-black-and-white-fruit-clipart-black-and-white-clipartfest.png' style = 'width: 100px; height: 100px'>
+		</div>
+		<div class = 'items'>
+			<div id = "fridgeInput">
+	            <form class="create-update-form" action="createfridge" method="POST">
+	                <div class="form-group">
+	                    <label for="cd"></label>
+	                    <input type="text" id="cd" name="name" placeholder="Add item to Fridge">
+	                    <button class="btn btn-secondary" type="submit">Add</button>
+	                </div>
+	                
+	            </form>
+	        </div>
+		</div>
+	</div>
+		<div class = "freezer">
+	</div>
+		<div class = "clock">
+		<div class = 'items'>			
+		</div>
+	</div>
+	<div class = "spice">
+		<div class = 'items'>
+            <form class="create-update-form" action="createspice" method="POST">
+
+                <div class="form-group">
+                    <label for="ce"></label>
+                    <input type="text" id="ce" name="name" placeholder="Add Spice">
+                    <button class="btn btn-secondary" type="submit">Add</button>
+                </div>
+            </form>
+		</div>
+	</div>
+	<div class = "pantry">
+		<div id = 'grain'>
+			<img src = 'https://media.istockphoto.com/vectors/wheat-plant-grain-sack-drawing-vector-id518481309'style = 'width: 100px; height: 100px'>
+		</div> 
+		<div id = 'bean'>
+			<img src = 'http://wikiclipart.com/wp-content/uploads/2016/12/Jelly-bean-clip-art-black-beans-clipart.jpg'style = 'width: 100px; height: 100px'>
+		</div>
+		<div id = 'oil'>
+			<img src = 'http://www.frugalabundance.com/wp-content/uploads/2015/08/VEGETABLEOILSB.jpg' style = 'width: 100px; height: 100px'>
+		</div>
+
+		<div id = 'nut'>
+			<img src = 'http://cliparts101.com/files/89/599B31877A953A9B8179ED8CB4A3813C/Peanut_Walking.png' style = 'width: 100px; height: 100px'>
+		</div>
+		<div class = 'items'>
+			<div id = 'pantryInput'>
+	            <form class="create-update-form" action="createpantry" method="POST">
+	                <div class="form-group">
+	                    <label for="cb"></label>
+	                    <input type="text" id="cb" name="name" placeholder="Add food to Pantry">
+	                    <button class="btn btn-secondary" type="submit">Add</button>
+	                </div>
+	                
+	            </form>
+	        </div>
+		</div>
+	</div> 
+ </div>
+
+<script type = 'text/javascript'>
+	$('#fridgeView').on('click', function(event){
+		event.preventDefault();
+		$('#list').empty();
+		$('#list').html('<ul> {{#each stock}} {{#if this.fridge}} <li> {{this.item_name}} <form action="update/{{this.id}}?_method=PUT" method="POST"> <button class="btn btn-primary" type="submit">Use item</button> </form><form action="delete/{{this.id}}?_method=DELETE" method="POST"><button class="btn btn-primary" type="submit">Delete item</button></form> </li> {{/if}} {{/each}}</ul>')
+	});
+
+	$('#pantryView').on('click', function(event){
+		event.preventDefault();
+		$('#list').empty();
+		$('#list').html('<ul> {{#each stock}} {{#if this.pantry}} <li> {{this.item_name}} <form action="update/{{this.id}}?_method=PUT" method="POST"> <button class="btn btn-primary" type="submit">Use item</button> </form><form action="delete/{{this.id}}?_method=DELETE" method="POST"><button class="btn btn-primary" type="submit">Delete item</button></form> </li> {{/if}} {{/each}}</ul>')
+	});
+
+	$('#spiceView').on('click', function(event){
+		event.preventDefault();
+		$('#list').empty();
+		$('#list').html('<ul> {{#each stock}} {{#if this.spice}} <li> {{this.item_name}} <form action="update/{{this.id}}?_method=PUT" method="POST"> <button class="btn btn-primary" type="submit">Use item</button> </form><form action="delete/{{this.id}}?_method=DELETE" method="POST"><button class="btn btn-primary" type="submit">Delete item</button></form> </li> {{/if}} {{/each}}</ul>')
+	});	
+
+</script>

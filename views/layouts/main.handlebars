@@ -4,19 +4,19 @@
 	<meta charset="UTF-8">
 		<title>My custom recipe</title>
 	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-		<link rel="stylesheet" href="/assets/css/style.css" type="text/css" />
+		<link rel="stylesheet" href="../assets/css/style.css" type="text/css" />
+		<link href="https://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet">
 		<script src="https://code.jquery.com/jquery.js"></script>
 	</head>
-	<body>
+	<body background = "../assets/images/kitchen.jpg" class = 'img-responsive center-block'>
 		<nav>
 			<ul>
 				{{#if user}}
 				<li><a href='/auth/logout'>Logout</a></li>
 				{{else}}
 				<li><a href='/auth/login'>Login</a></li>
+				<li><a href="/auth/google">Google</a></li>
 				{{/if}}
-				<li><a href='/'>Homepage</a></li>
-				<li><a href='/profile'>Profile</a></li>
 			</ul>
 		</nav>
 		{{{ body }}}
