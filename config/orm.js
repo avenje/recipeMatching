@@ -76,15 +76,22 @@ var orm = {
        cb(result);
      });
    },
-   delete: function(table, condition, cb){
-     var queryString = 'DELETE FROM ' + table;
-     queryString = queryString + ' WHERE ';
-     queryString = queryString + objToSql(condition);
+   // delete: function(table, condition, cb){
+   //   var queryString = 'DELETE FROM ' + table;
+   //   queryString = queryString + ' WHERE ';
+   //   queryString = queryString + objToSql(condition);
 
-     console.log(queryString);
-     connection.query(queryString, function(err, result) {
-       if (err) throw err;
-       cb(result);
+   //   console.log(queryString);
+   //   connection.query(queryString, function(err, result) {
+   //     if (err) throw err;
+   //     cb(result);
+
+     delete: function(table, condition, conditionVal, callback){
+    var queryString = 'DELETE FROM ' + table + ' WHERE ' + condition + '=?';
+
+    connection.query(queryString, [conditionVal], function(err, data){
+      if(err) throw err;
+      callback(data);
      });
    }
 };

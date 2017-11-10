@@ -17,12 +17,12 @@ passport.deserializeUser((id, done) => {
 passport.use(
     new GoogleStrategy({
         //options for the google strategy
-        callbackURL: 'https://localhost:3000/auth/google/redirect',
+        callbackURL: '/auth/google/redirect',
         clientID: keys.google.clientID,
         clientSecret: keys.google.clientSecret
     }, (accessToken, refreshToken, profile, done) => {
-        User.findOne({ googleid: profile.id }, function (currentUser) {
-            if (currentUser) {
+        User.findOne({googleid: profile.id}, function (currentUser) {
+            if(currentUser){
                 //already have the user
                 console.log('user is: ', currentUser);
                 done(null, currentUser);
@@ -31,8 +31,8 @@ passport.use(
                 User.create(
                     ['username', 'googleid', 'thumbnail'],
                     [profile.displayName, profile.id, profile._json.image.url],
-                    function (newUser) {
-                        User.findById(newUser.insertId, function (user) {
+                    function(newUser) {
+                        User.findById(newUser.insertId, function(user) {
                             console.log('new user created: ' + user);
                             done(null, user);
                         })
