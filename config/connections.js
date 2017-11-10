@@ -11,7 +11,7 @@ connection = mysql.createConnection({
 	// port: 3000,
 	host: "localhost",  // ysp9sse09kl0tzxj.cbetxkdyhwsb.us-east-1.rds.amazonaws.com
 	user: "root",  // r7uqo4x5nh5x7jxu
-	password: "mysqlpass",  // vk3a68yw21xrrogu
+	password: "",  // vk3a68yw21xrrogu
 	database: "recipes_db"  // database: "q49pd4euc6n0yq5i"
 });
 // };
