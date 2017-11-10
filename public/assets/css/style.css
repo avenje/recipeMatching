@@ -1,13 +1,11 @@
 body {
- 
   /*background-image: url("https://github.com/aaronwey/project2/blob/master/public/assets/images/kitchen.jpg?raw=true")*/
   background-repeat: no-repeat;
   /*min-height: 100%;*/
   background-size: 75%;
   margin: 0;
   padding: 1em;
-    font-family: 'Comfortaa', cursive;
-    
+  font-family: 'Comfortaa', cursive;
 }
 
 .welcome{
@@ -94,7 +92,7 @@ main, header{
     color: #333;
     float: left;
 }
-.google-btn{
+/* .google-btn{
     margin-left: 50%;
     margin-top: 80%;				
     color: #fff;
@@ -102,7 +100,7 @@ main, header{
     font-size: 20px;
     padding: 10px;
     background: #ff5353;
-}
+} */
 
 .recipe { 
   position: absolute;
