@@ -1,17 +1,14 @@
 body {
-  /*background-image: url("https://github.com/aaronwey/project2/blob/master/public/assets/images/kitchen.jpg?raw=true")*/
   background-repeat: no-repeat;
-  /*min-height: 100%;*/
   background-size: 75%;
   margin: 0;
-  padding: 1em;
-  font-family: 'Comfortaa', cursive;
+  font-family: 'Comfortaa', cursive;    
 }
 
 .welcome{
     float: left;
     width: 60%;
-    margin-top: 0px !important;
+    
 }
 
 .my{
@@ -20,9 +17,9 @@ body {
     margin-top: 0px !important;
 }
 
-.master-container {
+/*.master-container {
     min-height: 100%; /* force height of html and body */   
-}
+}*/
 
 .home {
   margin: 10px;
@@ -92,7 +89,7 @@ main, header{
     color: #333;
     float: left;
 }
-/* .google-btn{
+.google-btn{
     margin-left: 50%;
     margin-top: 80%;				
     color: #fff;
@@ -100,21 +97,24 @@ main, header{
     font-size: 20px;
     padding: 10px;
     background: #ff5353;
-} */
+}
 
 .recipe { 
   position: absolute;
   left: 75%;
   width: 25%;
-  height: 75%;
+  height: 100%;
   /*padding: 20px;*/
   /*margin-left: 30px;*/
   background: white;
-  border: 1px solid #eee;
+  /*border: 1px solid #eee;*/
 }
 
 #list {
   background: white;
+  height: 50%;
+  margin-top: 20%;
+  position: relative;
 }
 
 #use {
@@ -144,7 +144,7 @@ main, header{
   left: 23%;
   height: 20%;
   text-align: center; 
-  margin-top: 18%
+  margin-top: 18.5%
 }
 
 .clock {
@@ -177,7 +177,7 @@ main, header{
 
 #meat img{
   position: absolute;
-  top: 22px;
+  top: 35px;
   left: 60px;
 }
 
@@ -187,7 +187,7 @@ main, header{
 
 #dairy img{
   position: absolute;
-  top: 22px;
+  top: 35px;
   left: 210px;
 }
 
@@ -197,7 +197,7 @@ main, header{
 
 #vegetable img {
   position: absolute;
-  top: 145px;
+  top: 165px;
   left: 60px;
 }
 
@@ -205,9 +205,9 @@ main, header{
   position: relative;
 }
 
-#fruit {
+#fruit img{
   position: absolute;
-  top: 145px;
+  top: 165px;
   left: 210px;  
 }
 
@@ -218,6 +218,7 @@ main, header{
 #grain img {
   position: absolute;
   left: 80px;
+  margin-top: 5%;
 }
 
 #bean {
@@ -227,14 +228,15 @@ main, header{
 #bean img {
   position: absolute;
   left: 217px;
+  margin-top: 5%;
 }
 
 #pantryInput {
-  margin-top: 27%;
+  margin-top: 30%;
 }
 
 #fridgeInput {
-  margin-top: 35%;
+  margin-top: 39%;
   margin-left: 10%;
 }
 
@@ -245,15 +247,24 @@ main, header{
 #oil img {
   position: absolute;
   left: 80px;
-  margin-top: 26%;
+  margin-top: 30%;
 }
 
 #nut {
   position: absolute;
   left: 217px;
-  margin-top: 26%;
+  margin-top: 30%;
 }
 
 #fridgeView{
     margin-left: 5%;
+    margin-top: 5%;
+}
+
+#pantryView{
+    margin-top: 5%;
+}
+
+#spiceView{
+    margin-top: 5%;
 }
