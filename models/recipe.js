@@ -26,8 +26,12 @@ var recipe = {
     });
   },
   
-  delete: function(condition, cb) {
-    orm.delete("stock", condition, function(res) {
+  // delete: function(condition, cb) {
+  //   orm.delete("stock", condition, function(res) {
+  //     cb(res);
+
+    delete: function(conditionVal, cb){
+    orm.delete('stock', 'id', conditionVal, function(res){
       cb(res);
     });
   }
