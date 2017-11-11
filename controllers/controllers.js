@@ -4,20 +4,25 @@ var recipe = require("../models/recipe.js");
 var app = express();
 
 router.get("/", function(req, res) {
-  recipe.all(function(data) {
-    var hbsObject = {
-      stock: data
-    };
-    console.log(hbsObject);
-    res.render("index", hbsObject);
-  });
+  if(req.user){
+    res.redirect('/recipes');
+  } else {
+    res.render('login');
+  }
 });
 
 router.get('/recipes', function(req,res) {
-  recipe.all(function(data){
-          console.log();
-    res.render('recipe', {recipes : data, user: req.user});
-  });
+  if(!req.user){
+    res.redirect('/');
+  } else {
+    recipe.all(function(data) {
+      var hbsObject = {
+        stock: data
+      };
+      res.render('index', {stock : data, user: req.user});
+      console.log(hbsObject);
+    });
+  }
 });
 
 router.post("/createspice", function(req, res) {
@@ -67,7 +72,6 @@ router.put("/return/:id", function(req, res) {
   recipe.update({
     'include': 0
   }, condition, function(result) {
-
       res.redirect('/');       
   });
 });
@@ -75,7 +79,6 @@ router.put("/return/:id", function(req, res) {
 router.delete('/delete/:id', function(req, res){
   recipe.delete([req.params.id], function(){
     res.redirect('/');
-       
   });
 });
 

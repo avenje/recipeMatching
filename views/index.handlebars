@@ -1,19 +1,14 @@
-{{!-- <div class="container"> --}}
-<div class = "master-container">
-    {{!-- <div class="jumbrotron"> --}}
-        <h1 class="text-center welcome">Welcome</h1>
-        <h2 class="text-center my">My Custom Recipe Generator</h2>
-   {{!--  </div> --}}
-{{!--     <br><br><br><br><br><br><br><br><br> --}}
-    
-    <main>
-         
-    </main>
-
-{{!--  --}}
-
-
-
+<div background="../assets/images/kitchen.jpg" class='img-responsive center-block'>
+	<div class="master-container">
+		<nav>
+			<ul>
+				{{#if user}}
+				<li><a href='/auth/logout'>Logout</a></li>
+				{{else}}
+				<li><a href='/auth/login'>Google login</a></li>
+				{{/if}}
+			</ul>
+		</nav>
 
 	<div class = "recipe">
 			<button class="btn btn-secondary" id ="fridgeView" type="submit">View Fridge</button>
@@ -23,6 +18,9 @@
 			<button class="btn btn-secondary" id ="spiceView" type="submit">View Spices</button>
 
 		<div id = 'list'>
+			<ul id="list-fridge"> {{#each stock}} {{#if this.fridge}} <li> {{this.item_name}} <form action="update/{{this.id}}?_method=PUT" method="POST"> <button class="btn btn-primary" type="submit">Use item</button> </form><form action="delete/{{this.id}}?_method=DELETE" method="POST"><button class="btn btn-primary" type="submit">Delete item</button></form> </li> {{/if}} {{/each}}</ul>
+			<ul id="list-pantry"> {{#each stock}} {{#if this.pantry}} <li> {{this.item_name}} <form action="update/{{this.id}}?_method=PUT" method="POST"> <button class="btn btn-primary" type="submit">Use item</button> </form><form action="delete/{{this.id}}?_method=DELETE" method="POST"><button class="btn btn-primary" type="submit">Delete item</button></form> </li> {{/if}} {{/each}}</ul>
+			<ul id="list-spice"> {{#each stock}} {{#if this.spice}} <li> {{this.item_name}} <form action="update/{{this.id}}?_method=PUT" method="POST"> <button class="btn btn-primary" type="submit">Use item</button> </form><form action="delete/{{this.id}}?_method=DELETE" method="POST"><button class="btn btn-primary" type="submit">Delete item</button></form> </li> {{/if}} {{/each}}</ul>
 		</div>
 		<div id ='use'>
 			<ul>
@@ -117,21 +115,29 @@
 <script type = 'text/javascript'>
 	$('#fridgeView').on('click', function(event){
 		event.preventDefault();
-		$('#list').empty();
-		$('#list').html('<ul> {{#each stock}} {{#if this.fridge}} <li> {{this.item_name}} <form action="update/{{this.id}}?_method=PUT" method="POST"> <button class="btn btn-primary" type="submit">Use item</button> </form><form action="delete/{{this.id}}?_method=DELETE" method="POST"><button class="btn btn-primary" type="submit">Delete item</button></form> </li> {{/if}} {{/each}}</ul>');
+		$('#list-fridge').show();
+		$('#list-pantry').hide();
+		$('#list-spice').hide();
 	});
+
+		$('#list-fridge').hide();
+		$('#list-pantry').hide();
+		$('#list-spice').hide();
 
 	$('#pantryView').on('click', function(event){
 		event.preventDefault();
 		console.log('working');
-		$('#list').empty();
-		$('#list').html('<ul> {{#each stock}} {{#if this.pantry}} <li> {{this.item_name}} <form action="update/{{this.id}}?_method=PUT" method="POST"> <button class="btn btn-primary" type="submit">Use item</button> </form><form action="delete/{{this.id}}?_method=DELETE" method="POST"><button class="btn btn-primary" type="submit">Delete item</button></form> </li> {{/if}} {{/each}}</ul>');
+		$('#list-fridge').hide();
+		$('#list-pantry').show();
+		$('#list-spice').hide();
 	});
 
 	$('#spiceView').on('click', function(event){
 		event.preventDefault();
-		$('#list').empty();
-		$('#list').html('<ul> {{#each stock}} {{#if this.spice}} <li> {{this.item_name}} <form action="update/{{this.id}}?_method=PUT" method="POST"> <button class="btn btn-primary" type="submit">Use item</button> </form><form action="delete/{{this.id}}?_method=DELETE" method="POST"><button class="btn btn-primary" type="submit">Delete item</button></form> </li> {{/if}} {{/each}}</ul>');
+		$('#list-fridge').hide();
+		$('#list-pantry').hide();
+		$('#list-spice').show();
 	});	
 
 </script>
+</div>
