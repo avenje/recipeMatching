@@ -3,141 +3,174 @@
 		<nav>
 			<ul>
 				{{#if user}}
-				<li><a href='/auth/logout'>Logout</a></li>
+				<li>
+					<a href='/auth/logout'>Logout</a>
+				</li>
 				{{else}}
-				<li><a href='/auth/login'>Google login</a></li>
+				<li>
+					<a href='/auth/login'>Google login</a>
+				</li>
 				{{/if}}
 			</ul>
 		</nav>
 
-	<div class = "recipe">
-			<button class="btn btn-secondary" id ="fridgeView" type="submit">View Fridge</button>
+		<div class="recipe">
+			<button class="btn btn-secondary" id="fridgeView" type="submit">View Fridge</button>
 
-			<button class="btn btn-secondary" id ="pantryView" type="submit">View Pantry</button>
+			<button class="btn btn-secondary" id="pantryView" type="submit">View Pantry</button>
 
-			<button class="btn btn-secondary" id ="spiceView" type="submit">View Spices</button>
+			<button class="btn btn-secondary" id="spiceView" type="submit">View Spices</button>
 
-		<div id = 'list'>
-			<ul id="list-fridge"> {{#each stock}} {{#if this.fridge}} <li> {{this.item_name}} <form action="update/{{this.id}}?_method=PUT" method="POST"> <button class="btn btn-primary" type="submit">Use item</button> </form><form action="delete/{{this.id}}?_method=DELETE" method="POST"><button class="btn btn-primary" type="submit">Delete item</button></form> </li> {{/if}} {{/each}}</ul>
-			<ul id="list-pantry"> {{#each stock}} {{#if this.pantry}} <li> {{this.item_name}} <form action="update/{{this.id}}?_method=PUT" method="POST"> <button class="btn btn-primary" type="submit">Use item</button> </form><form action="delete/{{this.id}}?_method=DELETE" method="POST"><button class="btn btn-primary" type="submit">Delete item</button></form> </li> {{/if}} {{/each}}</ul>
-			<ul id="list-spice"> {{#each stock}} {{#if this.spice}} <li> {{this.item_name}} <form action="update/{{this.id}}?_method=PUT" method="POST"> <button class="btn btn-primary" type="submit">Use item</button> </form><form action="delete/{{this.id}}?_method=DELETE" method="POST"><button class="btn btn-primary" type="submit">Delete item</button></form> </li> {{/if}} {{/each}}</ul>
-		</div>
-		<div id ='use'>
-			<ul>
-				{{#each stock}}
-				{{#if this.include}}
+			<div id='list'>
+				<ul id="list-fridge"> {{#each stock}} {{#if this.fridge}}
+					<li> {{this.item_name}}
+						<form action="update/{{this.id}}?_method=PUT" method="POST">
+							<button class="btn btn-primary" type="submit">Use item</button>
+						</form>
+						<form action="delete/{{this.id}}?_method=DELETE" method="POST">
+							<button class="btn btn-primary" type="submit">Delete item</button>
+						</form>
+					</li> {{/if}} {{/each}}
+				</ul>
+				<ul id="list-pantry"> {{#each stock}} {{#if this.pantry}}
+					<li> {{this.item_name}}
+						<form action="update/{{this.id}}?_method=PUT" method="POST">
+							<button class="btn btn-primary" type="submit">Use item</button>
+						</form>
+						<form action="delete/{{this.id}}?_method=DELETE" method="POST">
+							<button class="btn btn-primary" type="submit">Delete item</button>
+						</form>
+					</li> {{/if}} {{/each}}
+				</ul>
+				<ul id="list-spice"> {{#each stock}} {{#if this.spice}}
+					<li> {{this.item_name}}
+						<form action="update/{{this.id}}?_method=PUT" method="POST">
+							<button class="btn btn-primary" type="submit">Use item</button>
+						</form>
+						<form action="delete/{{this.id}}?_method=DELETE" method="POST">
+							<button class="btn btn-primary" type="submit">Delete item</button>
+						</form>
+					</li> {{/if}} {{/each}}
+				</ul>
+			</div>
+			<div id='use'>
+				<ul>
+					{{#each stock}} {{#if this.include}}
 					<li>
 						{{this.item_name}}
-	                    <form action="return/{{this.id}}?_method=PUT" method="POST">
-	                        <button class="btn btn-primary" type="submit">Finished using</button>
-	                    </form>						
+						<form action="return/{{this.id}}?_method=PUT" method="POST">
+							<button class="btn btn-primary" type="submit">Finished using</button>
+						</form>
 					</li>
-				{{/if}}
-				{{/each}}
-			</ul>
-			<button class="btn btn-primary" id ="findRecipe" type="submit">Find Recipes!</button>
+					{{/if}} {{/each}}
+				</ul>
+				<button class="btn btn-primary" id="findRecipe" type="submit">Find Recipes!</button>
+			</div>
+			<div class="newInfo"></div>
 		</div>
 
-	</div>
-	<div class = "fridge">
-		<div id= 'meat'>
-			<img src = '../assets/images/meat.png' style = 'width: 100px; height: 100px'>
-		</div>
-		<div id = 'dairy'>
-			<img src = '../assets/images/cheese.png' style = 'width: 100px; height: 100px'>
-		</div>
-		<div id = 'vegetable'>
-			<img src = '../assets/images/veg.png' style = 'width: 100px; height: 100px'>
-		</div>
-		<div id = 'fruit'>
-			<img src = '../assets/images/fruit.png' style = 'width: 100px; height: 100px'>
-		</div>
-		<div class = 'items'>
-			<div id = "fridgeInput">
-	            <form class="create-update-form" action="createfridge" method="POST">
-	                <div class="form-group">
-	                    <label for="cd"></label>
-	                    <input type="text" id="cd" name="name" placeholder="Add item to Fridge">
-	                    <button class="btn btn-secondary" type="submit">Add</button>
-	                </div>
-	                
-	            </form>
-	        </div>
-		</div>
-	</div>
-		<div class = "freezer">
-	</div>
-		<div class = "clock">
-		<div class = 'items'>			
-		</div>
-	</div>
-	<div class = "spice">
-		<div class = 'items'>
-            <form class="create-update-form" action="createspice" method="POST">
+		<div class="fridge">
+			<div id='meat'>
+				<img src='../assets/images/meat.png' style='width: 120px; height: 120px'>
+			</div>
+			<div id='dairy'>
+				<img src='../assets/images/cheese.png' style='width: 120px; height: 120px'>
+			</div>
+			<div id='vegetable'>
+				<img src='../assets/images/veg.png' style='width: 120px; height: 120px'>
+			</div>
+			<div id='fruit'>
+				<img src='../assets/images/fruit.png' style='width: 120px; height: 120px'>
+			</div>
 
-                <div class="form-group">
-                    <label for="ce"></label>
-                    <input type="text" id="ce" name="name" placeholder="Add Spice">
-                    <button class="btn btn-secondary" type="submit">Add</button>
-                </div>
-            </form>
-		</div>
-	</div>
-	<div class = "pantry">
-		<div id = 'grain'>
-			<img src = '../assets/images/grains.png'style = 'width: 90px; height: 85px'>
-		</div> 
-		<div id = 'bean'>
-			<img src = '../assets/images/beans.png'style = 'width: 90px; height: 85px'>
-		</div>
-		<div id = 'oil'>
-			<img src = '../assets/images/oil.png' style = 'width: 90px; height: 85px'>
+			<div class='items'>
+				<div id="fridgeInput">
+					<form class="create-update-form" action="createfridge" method="POST">
+						<div class="form-group">
+							<label for="cd"></label>
+							<input type="text" id="cd" name="name" placeholder="Add item to Fridge">
+							<button class="btn btn-secondary" type="submit">Add</button>
+						</div>
+					</form>
+				</div>
+			</div>
 		</div>
 
-		<div id = 'nut'>
-			<img src = '../assets/images/nuts.png' style = 'width: 90px; height: 85px'>
+		<div class="freezer">
 		</div>
-		<div class = 'items'>
-			<div id = 'pantryInput'>
-	            <form class="create-update-form" action="createpantry" method="POST">
-	                <div class="form-group">
-	                    <label for="cb"></label>
-	                    <input type="text" id="cb" name="name" placeholder="Add food to Pantry">
-	                    <button class="btn btn-secondary" type="submit">Add</button>
-	                </div>
-	                
-	            </form>
-	        </div>
+		<div class="clock">
+			<div class='items'>
+			</div>
 		</div>
-	</div> 
- </div>
 
-<script type = 'text/javascript'>
-	$('#fridgeView').on('click', function(event){
-		event.preventDefault();
-		$('#list-fridge').show();
-		$('#list-pantry').hide();
-		$('#list-spice').hide();
-	});
+		<div class="spice">
+			<div class='items'>
+				<form class="create-update-form" action="createspice" method="POST">
+					<div class="form-group">
+						<label for="ce"></label>
+						<input type="text" id="ce" name="name" placeholder="Add Spice">
+						<button class="btn btn-secondary" type="submit">Add</button>
+					</div>
+				</form>
+			</div>
+		</div>
+
+		<div class="pantry">
+			<div id='grain'>
+				<img src='../assets/images/grains.png' style='width: 120px; height: 120px'>
+			</div>
+			<div id='bean'>
+				<img src='../assets/images/beans.png' style='width: 120px; height: 120px'>
+			</div>
+			<div id='oil'>
+				<img src='../assets/images/oil.png' style='width: 120px; height: 120px'>
+			</div>
+
+			<div id='nut'>
+				<img src='../assets/images/nuts.png' style='width: 120px; height: 120px'>
+			</div>
+			
+			<div class='items'>
+				<div id='pantryInput'>
+					<form class="create-update-form" action="createpantry" method="POST">
+						<div class="form-group">
+							<label for="cb"></label>
+							<input type="text" id="cb" name="name" placeholder="Add food to Pantry">
+							<button class="btn btn-secondary" type="submit">Add</button>
+						</div>
+
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script type='text/javascript'>
+		$('#fridgeView').on('click', function (event) {
+			event.preventDefault();
+			$('#list-fridge').show();
+			$('#list-pantry').hide();
+			$('#list-spice').hide();
+		});
 
 		$('#list-fridge').hide();
 		$('#list-pantry').hide();
 		$('#list-spice').hide();
 
-	$('#pantryView').on('click', function(event){
-		event.preventDefault();
-		console.log('working');
-		$('#list-fridge').hide();
-		$('#list-pantry').show();
-		$('#list-spice').hide();
-	});
+		$('#pantryView').on('click', function (event) {
+			event.preventDefault();
+			console.log('working');
+			$('#list-fridge').hide();
+			$('#list-pantry').show();
+			$('#list-spice').hide();
+		});
 
-	$('#spiceView').on('click', function(event){
-		event.preventDefault();
-		$('#list-fridge').hide();
-		$('#list-pantry').hide();
-		$('#list-spice').show();
-	});	
+		$('#spiceView').on('click', function (event) {
+			event.preventDefault();
+			$('#list-fridge').hide();
+			$('#list-pantry').hide();
+			$('#list-spice').show();
+		});
 
-</script>
+	</script>
 </div>
